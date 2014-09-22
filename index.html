@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<title> MIA BDAY </title>
+</head>
+<body>
+
+<img src="https://api.artsmia.org/images/116622/400/medium.jpg">
+
+<img src="https://api.artsmia.org/images/1743/400/medium.jpg">
+<img src="https://api.artsmia.org/images/10436/400/medium.jpg">
+<img src="https://api.artsmia.org/images/12092/400/medium.jpg">
+<img src="https://api.artsmia.org/images/10434/400/medium.jpg">
+<img src="https://api.artsmia.org/images/60728/400/medium.jpg">
+<img src="https://api.artsmia.org/images/529/400/medium.jpg">
+<img src="https://api.artsmia.org/images/98653/400/medium.jpg">
+<img src="https://api.artsmia.org/images/3520/400/medium.jpg">
+<img src="https://api.artsmia.org/images/5788/400/medium.jpg">
+<img src="https://api.artsmia.org/images/303/400/medium.jpg">
+<img src="https://api.artsmia.org/images/10361/400/medium.jpg">
+<img src="https://api.artsmia.org/images/794/400/medium.jpg">
+
+<script>
+  document.addEventListener('click', function(event) {
+    window.e = event
+    console.log(event)
+    if(event.target.nodeName == 'IMG') {
+      window.share_facebook(event.target.src)
+    }
+  })
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      // appId      : '283494295177465',
+      appId      : '283514835175411',
+      xfbml      : true,
+      version    : 'v2.0',
+    });
+    window.share_facebook = function(img) {
+      FB.login(function(){
+        FB.api("/me/photos", "POST", {"url": img, "message": "One of Two Designs for Sword Scabbard Fittings, Germany, c. 1580"}, function (response) {
+          console.log(response)
+          if (response && !response.error) {
+            /* handle the result */
+          }
+        });
+      }, {scope: 'publish_actions'});
+    }
+  };
+
+  (function(d, s, id){
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+</body>
+</html>
