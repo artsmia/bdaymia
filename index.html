@@ -20,41 +20,38 @@
 <img src="https://api.artsmia.org/images/10361/400/medium.jpg">
 <img src="https://api.artsmia.org/images/794/400/medium.jpg">
 
+<script src="bower_components/hello/dist/hello.all.js"></script>
 <script>
+  hello.init({ 
+    facebook : 283514835175411,
+    twitter: 'vJyAEOhA6UfAizVYCoLc0hbye'
+  }, {
+    redirect_uri: 'authed.html',
+    oauth_proxy : 'https://auth-server.herokuapp.com/proxy'
+  })
+
   document.addEventListener('click', function(event) {
-    window.e = event
-    console.log(event)
-    if(event.target.nodeName == 'IMG') {
-      window.share_facebook(event.target.src)
+    var id = event.target.src.match(/images\/(\d+)/)[1]
+    if(event.target.nodeName == 'IMG' && id) {
+      facebook(id)
     }
   })
 
-  window.fbAsyncInit = function() {
-    FB.init({
-      // appId      : '283494295177465',
-      appId      : '283514835175411',
-      xfbml      : true,
-      version    : 'v2.0',
-    });
-    window.share_facebook = function(img) {
-      FB.login(function(){
-        FB.api("/me/photos", "POST", {"url": img, "message": "One of Two Designs for Sword Scabbard Fittings, Germany, c. 1580"}, function (response) {
-          console.log(response)
-          if (response && !response.error) {
-            /* handle the result */
-          }
-        });
-      }, {scope: 'publish_actions'});
-    }
-  };
-
-  (function(d, s, id){
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) {return;}
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
+  function facebook(img) {
+    hello('facebook').login({scope: 'photos,publish_files'}).then(function(auth) {
+      hello('facebook').api('me/photos', 'POST', {
+        message: 'test', url: 'https://api.artsmia.org/images/'+img+'/400/medium.jpg'
+      }).then(function(success) { console.log(success) }, function(err) { console.log(err) })
+    })
+  }
+  function twitter() {
+    hello('twitter').login().then(function(auth) {
+      console.log('.t')
+      window.auth_t = auth
+    }, function(error) {
+      console.log('no twitter! ', error)
+    })
+  }
 </script>
 </body>
 </html>
