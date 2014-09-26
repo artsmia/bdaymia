@@ -20,37 +20,43 @@
 <img src="https://api.artsmia.org/images/10361/400/medium.jpg">
 <img src="https://api.artsmia.org/images/794/400/medium.jpg">
 
-<script src="bower_components/hello/dist/hello.all.js"></script>
+<script src="node_modules/hellojs/dist/hello.all.js"></script>
+<script src="bundle.js"></script>
 <script>
   hello.init({ 
     facebook : 283514835175411,
     twitter: 'vJyAEOhA6UfAizVYCoLc0hbye'
   }, {
     redirect_uri: 'authed.html',
-    oauth_proxy : 'https://auth-server.herokuapp.com/proxy'
+    oauth_proxy : 'https://glacial-waters-7413.herokuapp.com/proxy',
+    scope: 'photos,publish_files'
   })
 
   document.addEventListener('click', function(event) {
     var id = event.target.src.match(/images\/(\d+)/)[1]
     if(event.target.nodeName == 'IMG' && id) {
       facebook(id)
+      twitter(id)
     }
   })
 
   function facebook(img) {
-    hello('facebook').login({scope: 'photos,publish_files'}).then(function(auth) {
+    hello('facebook').login().then(function(auth) {
       hello('facebook').api('me/photos', 'POST', {
         message: 'test', url: 'https://api.artsmia.org/images/'+img+'/400/medium.jpg'
-      }).then(function(success) { console.log(success) }, function(err) { console.log(err) })
+      }).then(function(success) { console.log('facebook', success) }, function(err) { console.log(err) })
     })
   }
-  function twitter() {
-    hello('twitter').login().then(function(auth) {
-      console.log('.t')
-      window.auth_t = auth
-    }, function(error) {
-      console.log('no twitter! ', error)
-    })
+  function twitter(img) {
+    if(images[img]) {
+      hello('twitter').login().then(function(auth) {
+        hello('twitter').api('me/media', 'POST', {
+          message: 'test', file: images[5788], filename: '5788.jpg'
+        }).then(function(success) { console.log('twitter', success) }, function(err) { console.log(err) })
+      }, function(error) {
+        console.log('no twitter! ', error)
+      })
+    }
   }
 </script>
 </body>
