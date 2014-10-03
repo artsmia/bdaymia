@@ -2,61 +2,85 @@
   "1743": {
     "artist": "Egon Schiele",
     "title": "Standing Girl",
-    "id": "1743"
+    "id": "1743",
+    "width": 6824,
+    "height": 17025
   },
   "10436": {
     "artist": "Claude Monet",
     "title": "Grainstack, Sun in the Mist",
-    "id": "10436"
+    "id": "10436",
+    "width": 6596,
+    "height": 3996
   },
   "12092": {
     "artist": "Raffaelo Monti",
     "title": "Veiled Lady",
-    "id": "12092"
+    "id": "12092",
+    "width": 3106,
+    "height": 5553
   },
   "10434": {
     "artist": "Winslow Homer",
     "title": "The Conch Divers",
-    "id": "10434"
+    "id": "10434",
+    "width": 7872,
+    "height": 5527
   },
   "60728": {
     "artist": "",
     "title": "Celestial Horse",
-    "id": "60728"
+    "id": "60728",
+    "width": "",
+    "height": ""
   },
   "529": {
     "artist": "Rembrandt Harmensz. van Rijn",
     "title": "Lucretia",
-    "id": "529"
+    "id": "529",
+    "width": 4812,
+    "height": 5764
   },
   "98653": {
     "artist": "Hans Ledwinka",
     "title": "Tatra T87 four-door sedan",
-    "id": "98653"
+    "id": "98653",
+    "width": 5436,
+    "height": 4080
   },
   "3520": {
     "artist": "Unknown",
     "title": "The Doryphoros",
-    "id": "3520"
+    "id": "3520",
+    "width": 5428,
+    "height": 7230
   },
   "5788": {
     "artist": "Unknown",
     "title": "The Bodhisattva Guanyin",
-    "id": "5788"
+    "id": "5788",
+    "width": 3789,
+    "height": 4878
   },
   "303": {
     "artist": "Robert Koehler",
     "title": "Rainy Evening on Hennepin Avenue",
-    "id": "303"
+    "id": "303",
+    "width": 5505,
+    "height": 5196
   },
   "10361": {
     "artist": "Jean-Léon Gérôme",
     "title": "The Carpet Merchant",
-    "id": "10361"
+    "id": "10361",
+    "width": 5243,
+    "height": 6073
   },
   "794": {
     "artist": "Jean-Baptiste-Camille Corot",
     "title": "Springtime of Life",
-    "id": "794"
+    "id": "794",
+    "width": 4988,
+    "height": 6590
   }
 }

@@ -46,9 +46,10 @@
     if(!_art) return
 
     var message = "Happy (almost) 100th birthday to the MIA! I’m celebrating with "+_art.title+" by "+_art.artist+".\n\nWant to join the party? Visit artsmia.org/100 to give the gift of art to your online community."
+    var width = Math.min(3000, _art.width)
     hello('facebook').login().then(function(auth) {
       hello('facebook').api('me/photos', 'POST', {
-        message: message, url: 'https://api.artsmia.org/images/'+img+'/400/large.jpg'
+        message: message, url: 'https://api.artsmia.org/images/'+img+'/'+width+'/large.jpg'
       }).then(function(success) { console.log('facebook', success) }, function(err) { console.log(err) })
     })
   }
