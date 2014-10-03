@@ -51,7 +51,7 @@
   }
   function twitter(img) {
     if(images[img]) {
-      message = "Happy (almost) 100th #BDAYMIA! Celebrate with a gift of art to your online community—visit artsmia.org/100 & share."
+      message = "Happy (almost) 100th #BDAYMIA! Celebrate with your own gift of art—visit artsmia.org/100 & share."
       hello('twitter').login().then(function(auth) {
         hello('twitter').api('me/media', 'POST', {
           message: message, file: images[5788], filename: '5788.jpg'
