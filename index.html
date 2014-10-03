@@ -5,8 +5,9 @@
 </head>
 <body>
 
-<img src="https://api.artsmia.org/images/116622/400/medium.jpg">
+<p>Happy (almost) 100th birthday to the MIA! Start celebrating early with us by giving the gift of art to your online community. Simply select the work you’d like to share, pick your social platform, and inspire wonder through the power of art, just like that. Feels good, doesn’t it?</p>
 
+<img src="https://api.artsmia.org/images/116622/400/medium.jpg">
 <img src="https://api.artsmia.org/images/1743/400/medium.jpg">
 <img src="https://api.artsmia.org/images/10436/400/medium.jpg">
 <img src="https://api.artsmia.org/images/12092/400/medium.jpg">
@@ -41,17 +42,19 @@
   })
 
   function facebook(img) {
+    message = "Happy (almost) 100th birthday to the MIA! I’m celebrating with [Title] by [Artist Name]. Want to join the party? Visit artsmia.org/100 to give the gift of art to your online community."
     hello('facebook').login().then(function(auth) {
       hello('facebook').api('me/photos', 'POST', {
-        message: 'test', url: 'https://api.artsmia.org/images/'+img+'/400/medium.jpg'
+        message: message, url: 'https://api.artsmia.org/images/'+img+'/400/medium.jpg'
       }).then(function(success) { console.log('facebook', success) }, function(err) { console.log(err) })
     })
   }
   function twitter(img) {
     if(images[img]) {
+      message = "Happy (almost) 100th #BDAYMIA! Celebrate with a gift of art to your online community—visit artsmia.org/100 & share."
       hello('twitter').login().then(function(auth) {
         hello('twitter').api('me/media', 'POST', {
-          message: 'test', file: images[5788], filename: '5788.jpg'
+          message: message, file: images[5788], filename: '5788.jpg'
         }).then(function(success) { console.log('twitter', success) }, function(err) { console.log(err) })
       }, function(error) {
         console.log('no twitter! ', error)
