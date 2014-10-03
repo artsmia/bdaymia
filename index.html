@@ -42,16 +42,19 @@
   })
 
   function facebook(img) {
-    message = "Happy (almost) 100th birthday to the MIA! I’m celebrating with [Title] by [Artist Name]. Want to join the party? Visit artsmia.org/100 to give the gift of art to your online community."
+    var _art = art[img]
+    if(!_art) return
+
+    var message = "Happy (almost) 100th birthday to the MIA! I’m celebrating with "+_art.title+" by "+_art.artist+".\n\nWant to join the party? Visit artsmia.org/100 to give the gift of art to your online community."
     hello('facebook').login().then(function(auth) {
       hello('facebook').api('me/photos', 'POST', {
-        message: message, url: 'https://api.artsmia.org/images/'+img+'/400/medium.jpg'
+        message: message, url: 'https://api.artsmia.org/images/'+img+'/400/large.jpg'
       }).then(function(success) { console.log('facebook', success) }, function(err) { console.log(err) })
     })
   }
   function twitter(img) {
     if(images[img]) {
-      message = "Happy (almost) 100th #BDAYMIA! Celebrate with your own gift of art—visit artsmia.org/100 & share."
+      var message = "Happy (almost) 100th #BDAYMIA! Celebrate with your own gift of art—visit artsmia.org/100 & share."
       hello('twitter').login().then(function(auth) {
         hello('twitter').api('me/media', 'POST', {
           message: message, file: images[5788], filename: '5788.jpg'
