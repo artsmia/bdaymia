@@ -6,13 +6,13 @@ art.json:
 		jq -c --arg idx $$id '{key: $$idx, value: {artist: .artist, title: .title, id: $$idx, width: .image_width, height: .image_height}}' ~/tmp/collection/objects/$$((id/1000))/$$id.json; \
 	done | jq -s 'from_entries' > art.json
 
+size=3000
 images:
 	cat ids.txt | while read id; do \
-		file=images/$$id-3000.jpg; \
+		file=images/$$id-$(size).jpg; \
 		if [[ ! -f $$file ]]; then \
-			curl http://api.artsmia.org/images/$$id/3000/large.jpg -o $$file; \
-			sleep 30; \
-		fi; \
+			curl http://api.artsmia.org/images/$$id/$(size)/large.jpg -o $$file; \
+			fi; \
 	done
 
 .PHONY: ids.txt art.json images
