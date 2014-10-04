@@ -53,16 +53,17 @@
     })
   }
   function twitter(img) {
-    if(images[img]) {
-      var message = "Happy (almost) 100th #BDAYMIA! Celebrate with your own gift of art—visit artsmia.org/100 & share."
+    var message = "Happy (almost) 100th #BDAYMIA! Celebrate with your own gift of art—visit artsmia.org/100 & share."
+    loadImage(img, function(err, dataUrl) {
       hello('twitter').login().then(function(auth) {
+        window.bench = new Date
         hello('twitter').api('me/media', 'POST', {
-          message: message, file: images[5788], filename: '5788.jpg'
-        }).then(function(success) { console.log('twitter', success) }, function(err) { console.log(err) })
+          message: message, file: dataUrl, filename: 'artsmia-bday-gift-'+img+'.jpg'
+        }).then(function(success) { console.log('twitter', success, 'took ', (new Date - bench)/1000, 'seconds') }, function(err) { console.log(err) })
       }, function(error) {
         console.log('no twitter! ', error)
       })
-    }
+    })
   }
 </script>
 </body>
