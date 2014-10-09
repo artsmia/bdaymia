@@ -43,8 +43,10 @@
   function facebook(img) {
     var _art = art[img]
     if(!_art) return
+    var credit = _art.title
+    if(_art.artist && _art.artist != 'Unknown') credit += " by "+_art.artist
 
-    var message = "Happy (almost) 100th birthday to the MIA! I’m celebrating with "+_art.title+" by "+_art.artist+".\n\nWant to join the party? Visit artsmia.org/100 to give the gift of art to your online community."
+    var message = "Happy (almost) 100th birthday to the MIA! I’m celebrating with "+credit+".\n\nWant to join the party? Visit artsmia.org/100 to give the gift of art to your online community."
     var width = Math.min(3000, _art.width)
     hello('facebook').login().then(function(auth) {
       hello('facebook').api('me/photos', 'POST', {
