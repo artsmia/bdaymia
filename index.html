@@ -2,23 +2,32 @@
 <html>
 <head>
 <title> MIA BDAY </title>
+<style>
+img {
+  height: 22vh;
+  min-height: 13em;
+  column-count: 3;
+}
+</style>
 </head>
 <body>
 
 <p>Happy (almost) 100th birthday to the MIA! Start celebrating early with us by giving the gift of art to your online community. Simply select the work you’d like to share, pick your social platform, and inspire wonder through the power of art, just like that. Feels good, doesn’t it?</p>
 
-<img src="https://api.artsmia.org/images/1743/400/medium.jpg">
-<img src="https://api.artsmia.org/images/10436/400/medium.jpg">
-<img src="https://api.artsmia.org/images/12092/400/medium.jpg">
-<img src="https://api.artsmia.org/images/10434/400/medium.jpg">
-<img src="https://api.artsmia.org/images/60728/400/medium.jpg">
-<img src="https://api.artsmia.org/images/529/400/medium.jpg">
-<img src="https://api.artsmia.org/images/98653/400/medium.jpg">
-<img src="https://api.artsmia.org/images/3520/400/medium.jpg">
-<img src="https://api.artsmia.org/images/5788/400/medium.jpg">
-<img src="https://api.artsmia.org/images/303/400/medium.jpg">
-<img src="https://api.artsmia.org/images/10361/400/medium.jpg">
-<img src="https://api.artsmia.org/images/794/400/medium.jpg">
+<div>
+<img src="./images/crop/1743.jpg">
+<img src="./images/crop/10436.jpg">
+<img src="./images/crop/12092.jpg">
+<img src="./images/crop/10434.jpg">
+<img src="./images/crop/60728.jpg">
+<img src="./images/crop/529.jpg">
+<img src="./images/crop/98653.jpg">
+<img src="./images/crop/3520.jpg">
+<img src="./images/crop/5788.jpg">
+<img src="./images/crop/303.jpg">
+<img src="./images/crop/10361.jpg">
+<img src="./images/crop/794.jpg">
+</div>
 
 <script src="node_modules/hellojs/dist/hello.all.js"></script>
 <script src="bundle.js"></script>
@@ -33,12 +42,16 @@
   })
 
   document.addEventListener('click', function(event) {
-    var id = event.target.src.match(/images\/(\d+)/)[1]
+    var id = event.target.src.match(/images\/crop\/(\d+)/)[1]
     if(event.target.nodeName == 'IMG' && id) {
       facebook(id)
       twitter(id)
     }
   })
+
+  function url(img, width) {
+    return 'http://cdn.dx.artsmia.org/miabday/images/logo/'+img+'-'+width+'.jpg'
+  }
 
   function facebook(img) {
     var _art = art[img]
@@ -47,10 +60,9 @@
     if(_art.artist && _art.artist != 'Unknown') credit += " by "+_art.artist
 
     var message = "Happy (almost) 100th birthday to the MIA! I’m celebrating with "+credit+".\n\nWant to join the party? Visit artsmia.org/100 to give the gift of art to your online community."
-    var width = Math.min(3000, _art.width)
     hello('facebook').login().then(function(auth) {
       hello('facebook').api('me/photos', 'POST', {
-        message: message, url: 'https://api.artsmia.org/images/'+img+'/'+width+'/large.jpg'
+        message: message, url: url(img, 3000)
       }).then(function(success) { console.log('facebook', success) }, function(err) { console.log(err) })
     })
   }

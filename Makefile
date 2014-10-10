@@ -15,4 +15,15 @@ images:
 			fi; \
 	done
 
-.PHONY: ids.txt art.json images
+kris_images:
+	for cut in crop logo; do \
+		[[ -d images/$$cut ]] || mkdir images/$$cut; \
+	done
+	vipsthumbnail --size=500 -o ../../../images/crop/%s.jpg images/originals-from-kris/crop/*; \
+	for size in 1000 2000 3000; do \
+		vipsthumbnail --size=$$size -o ../../../images/logo/%s-$$size.jpg images/originals-from-kris/logo/*; \
+	done
+
+rsync:
+	rsync -avz --delete --exclude=".git" --exclude="node_modules" --exclude="react" . dx:/apps/cdn/miabday
+.PHONY: ids.txt art.json images kris_images
