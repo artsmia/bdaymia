@@ -29,6 +29,12 @@ img {
 <img src="./images/crop/794.jpg">
 </div>
 
+<div id="spotlight">
+  <img>
+  <button id="facebook">Share on Facebook</button>
+  <button id="twitter">Share on Twitter</button>
+</div>
+
 <script src="node_modules/hellojs/dist/hello.all.js"></script>
 <script src="bundle.js"></script>
 <script>
@@ -42,12 +48,27 @@ img {
   })
 
   document.addEventListener('click', function(event) {
-    var id = event.target.src.match(/images\/crop\/(\d+)/)[1]
+    var src = event.target.src
+    var match = src && src.match(/images\/crop\/(\d+)/)
+    var id = match && match[1]
     if(event.target.nodeName == 'IMG' && id) {
-      facebook(id)
-      twitter(id)
+      spotlight(id)
+    }
+
+    if(event.target.nodeName == 'BUTTON') {
+      var id = $spotlight.getAttribute('data-id')
+      switch(event.target.id) {
+        case "facebook": facebook(id); break
+        case "twitter": twitter(id); break
+      }
     }
   })
+
+  var $spotlight = document.querySelector('#spotlight')
+  function spotlight(id) {
+    $spotlight.setAttribute('data-id', id)
+    $spotlight.querySelector('img').src = url(id, 1000)
+  }
 
   function url(img, width) {
     return 'http://cdn.dx.artsmia.org/miabday/images/logo/'+img+'-'+width+'.jpg'
