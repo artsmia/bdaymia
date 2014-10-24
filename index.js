@@ -4,7 +4,7 @@ window.art = JSON.parse(fs.readFileSync('art.json', 'utf8'))
 
 window.loadImage = function(id, callback) {
   var image = new Image()
-  image.src = 'images/logo/'+id+'-2000.jpg'
+  image.src = '/miabday/images/logo/'+id+'-1000.jpg'
   image.onload = function() {
     var canvas = document.createElement('canvas'), ctx = canvas.getContext('2d')
     canvas.width = image.width
@@ -15,10 +15,11 @@ window.loadImage = function(id, callback) {
 }
 
 hello.init({
-  facebook : 283514835175411,
+  facebook : 283514835175411, // dev
+  // facebook : 283494295177465,
   twitter: 'vJyAEOhA6UfAizVYCoLc0hbye'
 }, {
-  redirect_uri: 'authed.html',
+  redirect_uri: '/miabday/authed.html',
   oauth_proxy : 'https://glacial-waters-7413.herokuapp.com/proxy',
   scope: 'photos,publish_files'
 })
@@ -48,7 +49,7 @@ function loadSharing(domNode) {
   }
 
   function url(img, width) {
-    return 'http://cdn.dx.artsmia.org/miabday/images/logo/'+img+'-'+width+'.jpg'
+    return '/miabday/images/logo/'+img+'-'+width+'.jpg'
   }
 
   function facebook(img) {
@@ -79,4 +80,5 @@ function loadSharing(domNode) {
   }
 }
 
+window.loadSharing = loadSharing
 loadSharing(document)

@@ -26,4 +26,11 @@ kris_images:
 
 rsync:
 	rsync -avz --delete --exclude=".git" --exclude="node_modules" --exclude="react" . dx:/apps/cdn/miabday
+
+s3:
+	s3cmd put node_modules/hellojs/dist/hellojs.all.min.js s3://mia100/app/
+	s3cmd put bundle.js s3://mia100/app/bundle.js
+	s3cmd put --recursive images/crop s3://mia100/app/images/
+	s3cmd setacl --acl-public --recursive s3://mia100/app/
+
 .PHONY: ids.txt art.json images kris_images
