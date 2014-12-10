@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{{ page.title }}</title>
+    <meta name="viewport" content="width=device-width">
+
+    <meta property="og:image" content="http://cdn.dx.artsmia.org/miabday/images/crop/{{page.objectId}}.jpg"/>
+    <meta property="og:title" content="{{page.title}}"/>
+    <!-- <meta property="og:url" content="http://new.artsmia.org/100/share{{page.url}}"/> -->
+    <meta property="og:url" content="http://cdn.dx.artsmia.org/miabday/facebook{{page.url}}"/>
+    <meta property="og:description" content="Happy (almost) 100th
+    birthday to the MIA! I'm celebrating with {{page.title}} by
+    {{page.artist}}.\n\nWant to join the party? Visit artsmia.org/100 to
+    give the gift of art to your online community.">
+    <meta property="og:site_name" content="Minneapolis Institute of Arts">
+
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <div class="site">
+      {{ content }}
+    </div>
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <script src="js/jquery.actual.min.js"></script>
+    <script src="js/leaflet-src.js"></script>
+    <script src="js/flat_image_zoom.js"></script>
+    <script>
+window.zoom = Zoomer.zoom_image({
+  container: 'zoom',
+  tileURL: "http://{s}.tiles.dx.artsmia.org/{{page.objectId}}/{z}/{x}/{y}.jpg",
+  imageWidth: {{page.width}},
+  imageHeight: {{page.height}}
+})
+    </script>
+  </body>
+</html>

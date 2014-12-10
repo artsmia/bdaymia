@@ -33,4 +33,16 @@ s3:
 	s3cmd put --recursive images/crop s3://mia100/app/images/
 	s3cmd setacl --acl-public --recursive s3://mia100/app/
 
-.PHONY: ids.txt art.json images kris_images
+og:
+	count=1; \
+		jq -c '.[] + {layout: "post"}' art.json | while read -r art; do \
+		title=$$(echo $$art | jq '.title'); \
+		slug=$$(echo $$title | sed -e 's/[^[:alnum:]]/-/g' | tr -s '-' | tr A-Z a-z | sed -e 's/--/-/; s/^-//; s/-$$//'); \
+		post=og/_posts/0000-01-$$(printf "%02d" $$count)-$$slug.md; \
+		echo $$post; \
+		count=$$((count+1)); \
+		frontMatter=$$(jq '. + {objectId: .id}' <<<$$art | json2yaml | sed 's/^ *//g'); \
+		echo "$$frontMatter\n---\n\n" > $$post; \
+	done
+
+.PHONY: ids.txt art.json images kris_images og
