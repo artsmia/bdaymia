@@ -36,6 +36,7 @@ window.zoom = Zoomer.zoom_image({
   imageWidth: {{page.width}},
   imageHeight: {{page.height}}
 })
+{% if page.highlight %}zoom.map.fitBounds(L.geoJson({{page.highlight}}).getBounds()){% endif %}
     </script>
   </body>
 </html>
