@@ -10,10 +10,12 @@
     <meta property="og:title" content="{{page.title}}"/>
     <!-- <meta property="og:url" content="http://new.artsmia.org/100/share{{page.url}}"/> -->
     <meta property="og:url" content="http://cdn.dx.artsmia.org/miabday/facebook{{page.url}}"/>
-    <meta property="og:description" content="Happy (almost) 100th
-    birthday to the MIA! I'm celebrating with {{page.title}} by
-    {{page.artist}}.\n\nWant to join the party? Visit artsmia.org/100 to
-    give the gift of art to your online community.">
+{% capture message %}
+Happy (almost) 100th birthday to the MIA!
+I'm celebrating with {{page.title}}{% unless page.artist == '' or page.artist contains 'Unknown' %} by {{page.artist}}{% endunless %}.
+Want to join the party? Visit artsmia.org/100 to give the gift of art to your online community.
+{% endcapture %}
+    <meta property="og:description" content="{{message}}">
     <meta property="og:site_name" content="Minneapolis Institute of Arts">
 
     <link rel="stylesheet" href="css/leaflet.css">
