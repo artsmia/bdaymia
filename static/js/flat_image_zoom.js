@@ -621,8 +621,8 @@ Zoomer.windowResized = function () {
     }
 };
 
-$(window).resize(function () {
-    clearTimeout(Zoomer.resizeTimer);
-    Zoomer.resizeTimer = setTimeout(Zoomer.windowResized, 100);
-});
+// $(window).resize(function () {
+//     clearTimeout(Zoomer.resizeTimer);
+//     Zoomer.resizeTimer = setTimeout(Zoomer.windowResized, 100);
+// });
 
