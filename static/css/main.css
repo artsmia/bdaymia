@@ -1,3 +1,7 @@
+body {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+}
+
 #zoom {
   position: absolute;
   top: 0;
@@ -6,5 +10,68 @@
   height: 100%;
   margin: 0;
   padding: 0;
-  background: #eee;
+  background: white;
+}
+h2 ~ img { display: none; }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  padding-top: 0.5rem;
+  text-align: center;
+  background-color: white;
+  width: 100%;
+  transition: 200ms linear opacity;
+  border-radius: 6em 6em 0 0;
+}
+.leaflet-dragging footer, .leaflet-dragging .leaflet-control-container {
+  opacity: 0
+}
+@media screen and (min-width:600px) {
+  footer {
+      width: 10em;
+      top: 0;
+      bottom: auto;
+      border-radius: 0 0 1em 0;
+  }
+}
+footer h5 {
+  background: url('http://new.artsmia.org/100/wp-content/themes/BDayMIA-theme/new_artsmia/images/birthday-burst.svg') no-repeat center center;
+  text-indent: -1000em;
+  font-size: 5em;
+  margin: 0;
+}
+
+#share a {
+  text-decoration: none !important;
+  background: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96"><path fill="#a9c3c9" d="M48 0c-26.51 0-48 21.49-48 48 0 26.511 21.49 48 48 48s48-21.489 48-48c0-26.51-21.49-48-48-48zm11.369 33.17h-7.217c-.854 0-1.805 1.121-1.805 2.623v5.211h9.021v7.428h-9.021v22.306h-8.52v-22.306h-7.723v-7.428h7.723v-4.372c0-6.269 4.352-11.368 10.324-11.368h7.217v7.906z"/></svg>') no-repeat 50% 50%;
+  background-size: contain;
+  display: inline-block;
+  text-indent: -100em;
+  width: 2em;
+  height: 2em;
+  padding: 0 0.5em;
+}
+#share a + a {
+  background-image: url('data:image/svg+xml;utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96"><path fill="#a9c3c9" d="M48 0c-26.512 0-48 21.49-48 48 0 26.511 21.488 48 48 48 26.51 0 48-21.489 48-48 0-26.51-21.49-48-48-48zm19.521 39.322c.02.406.027.814.027 1.224 0 12.493-9.51 26.899-26.898 26.899-5.338 0-10.307-1.566-14.49-4.249.738.089 1.49.133 2.254.133 4.43 0 8.506-1.511 11.742-4.048-4.137-.075-7.629-2.809-8.832-6.564.578.109 1.17.17 1.779.17.861 0 1.697-.116 2.49-.332-4.324-.869-7.584-4.689-7.584-9.271l.002-.118c1.273.708 2.732 1.133 4.281 1.183-2.537-1.696-4.205-4.589-4.205-7.87 0-1.732.465-3.355 1.279-4.752 4.662 5.72 11.629 9.483 19.486 9.878-.162-.692-.244-1.414-.244-2.155 0-5.221 4.232-9.453 9.453-9.453 2.719 0 5.176 1.148 6.9 2.985 2.154-.424 4.178-1.21 6.004-2.294-.707 2.207-2.205 4.061-4.156 5.23 1.912-.229 3.734-.736 5.43-1.488-1.266 1.894-2.87 3.56-4.718 4.892z"/></svg>');
+}
+#share span { display: none; }
+@media screen and (max-width: 600px) {
+  #share {
+    margin-top: -3.5em;
+  }
+
+  #share a {
+    padding: 0 6em 0 0;
+    background-position: left;
+    width: 3em;
+    height: 3em;
+  }
+  #share a + a { background-position: right; }
+}
+
+footer a:hover {
+  -webkit-filter: hue-rotate(90deg) saturate(8);
 }
