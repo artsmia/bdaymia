@@ -42,7 +42,7 @@ static:
 		post=static/_posts/0000-01-$$(printf "%02d" $$count)-$$slug.md; \
 		echo $$post; \
 		count=$$((count+1)); \
-		frontMatter=$$(jq '. + {objectId: .id}' <<<$$art | json2yaml | sed 's/^ *//g'); \
+		frontMatter=$$(jq '. + {objectId: .id, redirect_from: "\(.id).html"}' <<<$$art | json2yaml | sed 's/^ *//g'); \
 		echo "$$frontMatter\n---\n\n" > $$post; \
 	done
 

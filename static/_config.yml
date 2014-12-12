@@ -1,4 +1,6 @@
 name: MIA Birthday Art Sharing
 markdown: redcarpet
-pygments: true
 permalink: none
+baseurl: /100/share
+gems:
+  - jekyll-redirect-from
