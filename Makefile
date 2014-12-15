@@ -21,12 +21,16 @@ kris_images:
 		[[ -d images/$$cut ]] || mkdir images/$$cut; \
 	done
 	vipsthumbnail --size=500 -o ../../../images/crop/%s.jpg images/originals-from-kris/crop/*; \
+	vipsthumbnail --size=500 -o ../../../images/logo/%s.jpg images/originals-from-kris/logo/*; \
 	for size in 1000 2000 3000; do \
 		vipsthumbnail --size=$$size -o ../../../images/logo/%s-$$size.jpg images/originals-from-kris/logo/*; \
 	done
 
 rsync:
-	rsync -avz --delete --exclude=".git" --exclude="node_modules" --exclude="react" . dx:/apps/cdn/miabday
+	rsync -avz --delete --copy-links \
+    --exclude=".git" --exclude="node_modules" --exclude="react" --exclude="images.backup" --exclude="static" --exclude="images/originals-from-kris" \
+    . dx:/apps/cdn/miabday
+	rsync -avz static/_site/* new:/var/www/new.artsmia.org/htdocs/bday-share/
 
 s3:
 	s3cmd put node_modules/hellojs/dist/hellojs.all.min.js s3://mia100/app/
