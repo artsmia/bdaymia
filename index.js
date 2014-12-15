@@ -80,5 +80,5 @@ function loadSharing(domNode) {
   }
 }
 
-window.loadSharing = loadSharing
-loadSharing(document)
+// window.loadSharing = loadSharing
+// loadSharing(document)
