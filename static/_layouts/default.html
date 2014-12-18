@@ -45,7 +45,7 @@ window.zoom = Zoomer.zoom_image({
   imageWidth: {{page.width}},
   imageHeight: {{page.height}}
 })
-{% if page.highlight != blank %}function highlight() { zoom.map.fitBounds(L.geoJson({{page.highlight}}).getBounds()) }
+{% if page.highlight != blank %}function highlight() { Zoomer.windowResized(); zoom.map.fitBounds(L.geoJson({{page.highlight}}).getBounds()) }
 highlight(); window.onresize = highlight{% else %}window.onresize = Zoomer.windowResized{% endif %}
     </script>
   </body>
