@@ -36,6 +36,9 @@ footer {
       bottom: auto;
       border-radius: 0 0 1em 0;
   }
+  footer h5 {
+    font-size: 9em !important;
+  }
 }
 footer h5 {
   background: url('http://new.artsmia.org/100/wp-content/themes/BDayMIA-theme/new_artsmia/images/birthday-burst.svg') no-repeat center center;
